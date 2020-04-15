@@ -22,12 +22,14 @@ const argv = yargs
     .array('--catagories')
     .argv
 
-let { title, tags, catagories, filename, date, pic, dirname, link, branch, pattern, repo, username, url } = argv
+let { title, tags, catagories, filename, date, pic, dirname, link, branch, pattern, repo, username, url} = argv
 
 dirname = dirname || (utils.getDate({ weekday: false, time: false }) + '-' + utils.getRandom(1))
 filename = filename ? utils.formatFilename({ filename, ext: '.md' }) : 'readme.md'
-tags = [...leetcode.global.tags, ...((leetcode[pattern] && leetcode[pattern].tags) || leetcode.default.tags)]
-catagories = [...leetcode.global.catagoreis, ...((leetcode[pattern] && leetcode[pattern].catagoreis) || leetcode.default.catagories)]
+
+const stringPattern = leetcode[pattern]
+tags = [...leetcode.global.tags, ...(stringPattern.tags || leetcode.default.tags)]
+catagories = [...leetcode.global.catagoreis, ...(stringPattern.catagories || leetcode.default.catagories)]
 
 branch = branch || leetcode.git.branch || git.branch || 'master'
 repo = repo || leetcode.git.repo || 'leetcode'
@@ -47,7 +49,7 @@ link: ${link || ''}
 ---
 
 ## 题目
-[Leetcode-题目链接]()
+[Leetcode-题目链接](${link || ''})
 [github-链接](${url}/${dirname})
 
 ![](./${pic || 'problem'}.png)

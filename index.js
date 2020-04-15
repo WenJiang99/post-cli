@@ -33,6 +33,7 @@ yargs
         function (err, stdout, stderr) {
           if (err) return console.log('exec_child_process_err', stderr);
           console.log(`模板目录生成成功.`)
+          if (stdout) console.log(stdout);
         })
     }
   )
