@@ -10,7 +10,8 @@ module.exports = {
 
   },
   string: {
-    treeDir: 'String', // github仓库中String类型题目存放的文件夹名称 leetcode/String
+    treeDir: 'String', // github仓库中String类型题目存放的文件夹名称 leetcode/String,
+    titlePrefix: 'Leetcode#String',
     tags: [''],
     catagories: ['Leetcode#String', 'Javascript#String'],
   },
