@@ -1,3 +1,4 @@
+const TITLE_PREFIX = 'Leetcode'
 module.exports = {
   git: {
     username: 'WenJiang99',
@@ -5,19 +6,26 @@ module.exports = {
     branch: 'master'
   },
   global: {
-    tags: ['Leetcode#刷题'],
-    catagoreis: ['刷题#Javascript', 'Leetcode#Javascript']
+    tags: [],
+    categories: ['leetcode']
 
   },
   string: {
     treeDir: 'String', // github仓库中String类型题目存放的文件夹名称 leetcode/String,
-    titlePrefix: 'Leetcode#String',
-    tags: [''],
-    catagories: ['Leetcode#String', 'Javascript#String'],
+    titlePrefix: TITLE_PREFIX,
+    tags: ['string'],
+    categories: [],
+  },
+  stack:{
+    treeDir:'Stack',
+    titlePrefix:TITLE_PREFIX,
+    tags:['stack'],
+    categories:[]
+
   },
   default: {
-    tags: ['Leetcode#题目'],
-    catagories: []
+    tags: ['leetcode'],
+    categories: []
   }
 
 }

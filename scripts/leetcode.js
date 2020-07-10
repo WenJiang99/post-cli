@@ -15,7 +15,7 @@ const argv = yargs
     .alias('-u', '--username')
     .alias('-d', '--dirname') // 创建的目录名，存放 markdown 文件的目录
     .alias('-f', '--filename') // markdown 文件名，默认为 readme.md
-    .alias('-c', '--catagories')
+    .alias('-c', '--categories')
     .alias('-t', '--tags')
     .alias('-l', '--link')
     .alias('-s', '--summary')
@@ -24,13 +24,13 @@ const argv = yargs
     .boolean('--cover')
     .boolean('--mathjax')
     .array('--tags')
-    .array('--catagories')
+    .array('--categories')
     .argv
 
 let {
     title,
     tags,
-    catagories,
+    categories,
     filename,
     date,
     pic,
@@ -54,23 +54,23 @@ filename = filename ? utils.formatFilename({ filename, ext: '.md' }) : 'readme.m
 
 const patternConfig = leetcode[pattern]
 tags = [...leetcode.global.tags, ...(patternConfig.tags || leetcode.default.tags), ...(tags || [])]
-catagories = [...leetcode.global.catagoreis, ...(patternConfig.catagories || leetcode.default.catagories), ...(catagories || [])]
+categories = [...leetcode.global.categories, ...(patternConfig.categories || leetcode.default.categories), ...(categories || [])]
 
 branch = branch || leetcode.git.branch || git.branch || 'master'
 repo = repo || leetcode.git.repo || 'leetcode'
 username = username || leetcode.git.username || git.username
 url = url || `https://github.com/${username}/${repo}/tree/${branch || 'master'}/${treeDir}`
 const picUrl = `https://raw.githubusercontent.com/${username}/${repo}/${branch || 'master'}/${treeDir}/${dirname}/${pic || 'problem'}.png`
-const catagoriesStr = (catagories || []).reduce((str, item) => { return str + `- ${item} \n` }, 'catagories: \n')
+const categoriesStr = (categories || []).reduce((str, item) => { return str + `- ${item} \n` }, 'categories: \n')
 const tagsStr = (tags || []).reduce((str, item) => str + `- ${item} \n`, 'tags: \n')
 
 // 生成与文件同名的数据目录用于存放markdown文件中引用的静态资源，解决hexo下markdown文件相对路径引用不到的问题
 const dataDir = filename.split('.').shift()
 
 const template = `---
-title: ${(patternConfig && patternConfig.titlePrefix) || 'Leetcode#'} ${title || ''}
+title: ${(patternConfig && patternConfig.titlePrefix) || 'Leetcode'} ${title || ''}
 date: ${date || utils.getDate({ time: true, weekday: false })}
-${catagoriesStr}
+${categoriesStr}
 ${tagsStr}
 summary: ${summary || title || ''}
 author: ${author || post.author || ''}
@@ -90,7 +90,7 @@ link: ${link || ''}
 [github-链接](${url}/${dirname})
 
 ![](./${pic || 'problem'}.png)   
-<--! select a type of post img ref -->
+<!-- select a type of hexo pic ref -->
 ![](${picUrl || ''})   
 ![](./${dataDir}/${pic || 'problem'}.png)
 
@@ -105,13 +105,30 @@ link: ${link || ''}
 \`\`\`
 
 ### 效率
-耗时： ,  %
-内存： ,  %
+耗时：ms,%
+内存：MB,%
+
+## 解法
+
+### 思路
+
+### 代码
+\`\`\`js 
+
+
+\`\`\`
+
+### 效率
+耗时：ms, %
+内存：MB, %
 
 ## 参考
 
 - []()
 
+## 推荐阅读
+
+- []()
 `
 if (!fs.existsSync(path.join(rootPath, dirname))) fs.mkdirSync(path.join(rootPath, dirname));
 

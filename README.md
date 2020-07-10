@@ -16,7 +16,6 @@
 
 需要解除全局快捷方式时候，在**post-cli**目录下执行 `npm unlink`
 
-
 ## Docs
 
 - `post-cli leetcode [options] ` 在当前目录下创建Leetcode仓库的hexo文章模板，使用项目中 `config/leetcode.js` 中的配置
@@ -51,17 +50,17 @@
     },
     global: {
       tags: ['Leetcode#刷题'],
-      catagoreis: ['刷题#Javascript', 'Leetcode#Javascript']
+      categories: ['刷题#Javascript', 'Leetcode#Javascript']
 
     },
     string: {
       treeDir: 'String', // github仓库中String类型题目存放的文件夹名称 leetcode/String
       tags: [''],
-      catagories: ['Leetcode#String', 'Javascript#String'],
+      categories: ['Leetcode#String', 'Javascript#String'],
     },
     default: {
       tags: ['Leetcode#题目'],
-      catagories: []
+      categories: []
     }
 
   }
@@ -76,7 +75,7 @@
   ---
   title: Leetcode#String 反转字符串中的单词
   date: 2020-04-15 23:37:08 
-  catagories: 
+  categories: 
   - 刷题#Javascript 
   - Leetcode#Javascript 
   - Leetcode#String 

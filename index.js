@@ -13,6 +13,8 @@ yargs
         .option('dirname', { alias: 'd', description: '创建的Leetcode题目的文件夹名，即markdown文件所在的目录名', type: 'string' })
         .option('filename', { alias: 'f', description: '创建的markdown文件的文件名，默认是readme.md', type: 'string' })
         .option('title', { description: '文章的标题', type: 'string' })
+        .option('summary', { alias: 's', description: '文章概述', type: 'string' })
+        .option('author', { alias: 'a', description: '文章作者', type: 'string' })
         .option('link', { description: 'LeetCode题目链接', type: 'string' })
         .option('pic', { description: '自动引用的图片文件名', type: 'string' })
         .option('repo', { description: '仓库链接', alias: '-r', type: 'string' })
@@ -27,7 +29,6 @@ yargs
         if (!key || key.includes('_') || key.includes('$') || key.length <= 1) continue;
         optionsStr += `--${key} ${JSON.stringify(argv[key])} `
       }
-      console.log('index ==> ', argv)
       child_process.exec(
         `node ${path.resolve(__dirname, './scripts/leetcode.js')} ${optionsStr} `,
         function (err, stdout, stderr) {
